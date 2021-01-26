@@ -7,8 +7,8 @@ namespace GamePuzzle {
 
             int[] list_num =  { 1,2,3,4,5,6,7,8,9 };
             int[,] matriz =  { { 3, 1, 3},
-                               { 4, 7, 0},
-                               { 3, 8, 4} };
+                               { 4, 7, 2},
+                               { 3, 8, 0} };
 
 
             printMat(matriz);
@@ -58,7 +58,47 @@ namespace GamePuzzle {
                 // return matriz
             }
         }
-        
+        private static void move_right(int[,] matriz) { // int[]
+            bool possible = true;
+            int x = 0;
+            int y = 0;
+
+            int[] danger_y = { 0,1,2 };
+            int[] danger_x = { 2,2,2 };
+
+            // Recorre y encuentra en Vacío (0)
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    //Console.WriteLine(matriz[i,j]);
+                    if (matriz[i,j] == 0) {
+                        x = i;
+                        y = j;
+                    }
+                }
+            }
+            void if_danger() {
+                for (int i = 0; i < 3; i++) {
+                    if (danger_x[i] == y && danger_y[i] == x) {
+                        Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
+                        possible = false;
+                    }
+                }
+            }
+            if_danger();
+
+            if (possible) {
+                matriz[x,y] = matriz[x,y + 1];
+                matriz[x,y + 1] = 0;
+
+                Console.WriteLine("La nueva matriz es: ");
+                printMat(matriz);
+
+
+            } else {
+                // return matriz
+            }
+        }
+       
         private static void printMat(int[,] matriz) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
