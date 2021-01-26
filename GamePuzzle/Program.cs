@@ -4,17 +4,23 @@ using System.Collections.Generic;
 namespace GamePuzzle {
     class Program {
         static void Main(string[] args) {
-
-            int[] list_num =  { 1,2,3,4,5,6,7,8,9 };
-            int[,] matriz =  { { 6, 1, 3},
-                               { 2, 5, 9},
-                               { 0, 8, 4} };
-
-
+            
+            int[,] matriz =  { { 2,3,5},
+                               { 1,6,8},
+                               { 0,4,7} };
+            int player = 0;
             printMat(matriz);
-
-            move_down(matriz);
-
+            while (true) {
+                switch (Console.ReadKey().Key) {
+                    case ConsoleKey.Escape: Environment.Exit(1); break;
+                    case ConsoleKey.A: Console.Clear(); move_lelf(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
+                    case ConsoleKey.D: Console.Clear(); move_right(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
+                    case ConsoleKey.S: Console.Clear(); move_down(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
+                    case ConsoleKey.W: Console.Clear(); move_up(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
+                }
+                
+            }
+      
         }
 
         private static void move_lelf(int[,] matriz) { // int[]
@@ -38,8 +44,9 @@ namespace GamePuzzle {
             void if_danger() {
                 for (int i = 0; i < 3; i++) {
                     if (danger_x[i] == x && danger_y[i] == y) {
-                        Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
+                        //Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
                         possible = false;
+                        printMat(matriz);
                     }
                 }
             }
@@ -49,13 +56,13 @@ namespace GamePuzzle {
                 matriz[x,y] = matriz[x,y - 1];
                 matriz[x,y - 1] = 0;
 
-                Console.WriteLine("La nueva matriz es: ");
+                //Console.WriteLine("La nueva matriz es: ");
+
                 printMat(matriz);
 
 
-            } else {
-                // return matriz
             }
+
         }
         private static void move_right(int[,] matriz) { // int[]
             bool possible = true;
@@ -78,8 +85,9 @@ namespace GamePuzzle {
             void if_danger() {
                 for (int i = 0; i < 3; i++) {
                     if (danger_x[i] == y && danger_y[i] == x) {
-                        Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
+                        //Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
                         possible = false;
+                        printMat(matriz);
                     }
                 }
             }
@@ -89,15 +97,12 @@ namespace GamePuzzle {
                 matriz[x,y] = matriz[x,y + 1];
                 matriz[x,y + 1] = 0;
 
-                Console.WriteLine("La nueva matriz es: ");
+                //Console.WriteLine("La nueva matriz es: ");
                 printMat(matriz);
 
 
-            } else {
-                // return matriz
             }
         }
-
         private static void move_up(int[,] matriz) { // int[]
             bool possible = true;
             int x = 0;
@@ -119,8 +124,9 @@ namespace GamePuzzle {
             void if_danger() {
                 for (int i = 0; i < 3; i++) {
                     if (danger_x[i] == x && danger_y[i] == y) {
-                        Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
+                        //Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
                         possible = false;
+                        printMat(matriz);
                     }
                 }
             }
@@ -130,12 +136,9 @@ namespace GamePuzzle {
                 matriz[x,y] = matriz[x-1,y ];
                 matriz[x-1 ,y ] = 0;
 
-                Console.WriteLine("La nueva matriz es: ");
+                //Console.WriteLine("La nueva matriz es: ");
                 printMat(matriz);
 
-
-            } else {
-                // return matriz
             }
         }
         private static void move_down(int[,] matriz) { // int[]
@@ -159,8 +162,9 @@ namespace GamePuzzle {
             void if_danger() {
                 for (int i = 0; i < 3; i++) {
                     if (danger_x[i] == x && danger_y[i] == y) {
-                        Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
+                        //Console.WriteLine("La posición X: " + danger_x[i] + "[" + x + "] /////////////////// La posición Y: " + danger_y[i] + "[" + y + "]");
                         possible = false;
+                        printMat(matriz);
                     }
                 }
             }
@@ -170,12 +174,10 @@ namespace GamePuzzle {
                 matriz[x,y] = matriz[x + 1,y];
                 matriz[x + 1,y] = 0;
 
-                Console.WriteLine("La nueva matriz es: ");
+                //Console.WriteLine("La nueva matriz es: ");
                 printMat(matriz);
 
 
-            } else {
-                // return matriz
             }
         }
         private static void printMat(int[,] matriz) {
@@ -190,20 +192,6 @@ namespace GamePuzzle {
                 Console.WriteLine("");
             }
         }
-        private static void printArr(int[] arr) {
-            for (int i = 0; i < arr.Length; i++) {
-                Console.Write(arr[i]);
-            }
-            Console.WriteLine(",");
-        }
-        private static void generate_random(int[,] matriz, int[] list_num) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    Console.Write("[" + matriz[i,j] + "]");
-                }
-                Console.WriteLine("");
-            }
-        }
-        
+  
     }
 }
