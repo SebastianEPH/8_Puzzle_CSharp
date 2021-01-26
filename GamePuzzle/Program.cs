@@ -4,25 +4,53 @@ using System.Collections.Generic;
 namespace GamePuzzle {
     class Program {
         static void Main(string[] args) {
+
             
-            int[,] matriz =  { { 2,3,5},
-                               { 1,6,8},
-                               { 0,4,7} };
+             int[,] matriz =  { { 2,3,5},
+                                { 1,6,8},
+                                { 0,4,7} };
+            /*
+            int[,] matriz =  { { 1,2,3},    // Estado final
+                               { 4,5,6},
+                               { 7,8,0} };*/
+
             int player = 0;
             printMat(matriz);
-            while (true) {
-                switch (Console.ReadKey().Key) {
-                    case ConsoleKey.Escape: Environment.Exit(1); break;
-                    case ConsoleKey.A: Console.Clear(); move_lelf(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
-                    case ConsoleKey.D: Console.Clear(); move_right(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
-                    case ConsoleKey.S: Console.Clear(); move_down(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
-                    case ConsoleKey.W: Console.Clear(); move_up(matriz); player = player + 1; Console.WriteLine("Jugadas: " + player); break;
+
+            bool start_game = true;
+            while (start_game) {
+                if (finish(matriz)) {
+                    start_game = false;
+                    Console.WriteLine("Haz completado el 8-Puzzle con " + player+ " movimientos");
+                    Console.ReadLine();
+                    Environment.Exit(1);
+                } else {
+                    switch (Console.ReadKey().Key) {
+                        case ConsoleKey.Escape: Environment.Exit(1); break;
+                        case ConsoleKey.A: Console.Clear(); move_lelf(matriz); player = player + 1; Console.WriteLine("Movimiento: " + player); break;
+                        case ConsoleKey.D: Console.Clear(); move_right(matriz); player = player + 1; Console.WriteLine("Movimiento: " + player); break;
+                        case ConsoleKey.S: Console.Clear(); move_down(matriz); player = player + 1; Console.WriteLine("Movimiento: " + player); break;
+                        case ConsoleKey.W: Console.Clear(); move_up(matriz); player = player + 1; Console.WriteLine("Movimiento: " + player); break;
+                    }
                 }
                 
             }
-      
         }
+        private static bool finish(int[,] matriz) {
+            bool same= true;
+            int[,] finish =  { { 1,2,3},
+                               { 4,5,6},
+                               { 7,8,0} };
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (finish[i,j] != matriz[i,j]) {
+                        same = false;
+                    } 
+                }
+            }
 
+            return same;
+        }
         private static void move_lelf(int[,] matriz) { // int[]
             bool possible = true;
             int x = 0;
