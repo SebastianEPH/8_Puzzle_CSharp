@@ -12,9 +12,13 @@ consola utilizando __C#__, con los siguientes requerimientos:
 
 * El estado inicial del juego es completamente aleatorio,
 incluyendo el espacio vacío. Por ejemplo:
+
+
 <div style="text-align: center;" >
     <img src="https://imgur.com/SY17c0N.png" alt="">
 </div>
+
+
 * El deslizamiento de las piezas se realizará utilizando
 las teclas __(A W S D)__.
 * Cada tecla desplazará el número respectivo en la
@@ -28,7 +32,11 @@ disponible.
 * El programa debe limpiar la consola en cada iteracióncuando se oprima una tecla. 
 * El programa debe mostrar un mensaje __(“Hazcompletado el 8-puzzle”)__ si el jugador ha logrado
 llegar al estado final del rompecabezas, el cual sería: 
+
+
 <div style="text-align: center;" >
     <img src="https://imgur.com/08gbw4T.png" alt="">
 </div>
+
+
 * Adicionalmente el programa debe indicar el número de movimientos que el jugador ha realizado hasta la iteración actual. 
