@@ -3,7 +3,7 @@
 tienen un orden inicial. 
 
 <div style="text-align: center;" >
-    <img src="https://imgur.com/UygEYjJ.png" alt="">
+    <img src="https://imgur.com/UygEYjJ.png" >
 </div>
 
 
@@ -15,7 +15,7 @@ incluyendo el espacio vacío. Por ejemplo:
 
 
 <div style="text-align: center;" >
-    <img src="https://imgur.com/SY17c0N.png" alt="">
+    <img src="https://imgur.com/SY17c0N.png" height="200">
 </div>
 
 
@@ -35,7 +35,7 @@ llegar al estado final del rompecabezas, el cual sería:
 
 
 <div style="text-align: center;" >
-    <img src="https://imgur.com/08gbw4T.png" alt="">
+    <img src="https://imgur.com/08gbw4T.png" height="200">
 </div>
 
 
